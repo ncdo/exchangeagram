@@ -1,11 +1,3 @@
-//
-//  FeedViewController.swift
-//  ExchangeAGram
-//
-//  Created by Namchi Do on 11/28/14.
-//  Copyright (c) 2014 Namchi Do. All rights reserved.
-//
-
 import UIKit
 import MobileCoreServices
 import CoreData
@@ -19,12 +11,12 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         super.viewDidLoad()
 
         let request = NSFetchRequest(entityName: "FeedItem")
-        let appDelegate: AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
-        let context: NSManagedObjectContext = appDelegate.managedObjectContext!
-        
+        let appDelegate:AppDelegate = (UIApplication.sharedApplication().delegate as AppDelegate)
+        let context:NSManagedObjectContext = appDelegate.managedObjectContext!
         feedArray = context.executeFetchRequest(request, error: nil)!
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -45,9 +37,9 @@ class FeedViewController: UIViewController, UICollectionViewDataSource, UICollec
         let image = info[UIImagePickerControllerOriginalImage] as UIImage
         
         let imageData = UIImageJPEGRepresentation(image, 1.0)
-        let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext!
-        let entityDescription = NSEntityDescription.entityForName("FeedItem", inManagedObjectContext: managedObjectContext)
-        let feedItem = FeedItem(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext)
+        let managedObjectContext = (UIApplication.sharedApplication().delegate as AppDelegate).managedObjectContext
+        let entityDescription = NSEntityDescription.entityForName("FeedItem", inManagedObjectContext: managedObjectContext!)
+        let feedItem = FeedItem(entity: entityDescription!, insertIntoManagedObjectContext: managedObjectContext!)
         
         feedItem.image = imageData
         feedItem.caption = "Test caption"
